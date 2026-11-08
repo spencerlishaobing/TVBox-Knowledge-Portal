@@ -1,0 +1,28 @@
+---
+title: "进度与缺口"
+description: TVBox、影视仓与饭太硬复刻维护文档
+---
+
+# 进度与缺口
+
+## 已完成基线
+
+- TVBox 核心导航、首页、搜索、详情、播放、直播、收藏、历史与设置。
+- libmpv、JVM、Python 和常用本地 Spider 打包。
+- 饭太硬配置同步、JAR 归档与完整旧版反编译基线。
+- 玩偶、WoGG 等重点站点的本地适配探索。
+
+## 当前重点
+
+1. 以影视仓 APP 的用户流程重新核对 TVBoxOS 到 PC 的功能映射。
+2. 网盘详情、封面、选集名称、二维码登录和真实播放链闭环。
+3. 直播源失效检测、线路自动降级与 EPG 可用性。
+4. 点播/直播播放器能力彻底解耦。
+5. 4K/8K、60fps、硬解、HDR 和真全屏的媒体信息证据化验收。
+
+## 影视仓 6.2.8 第一轮逆向
+
+已定位并归档 TV arm64 原始 APK，完成 JADX 1.5.6 与 Apktool 3.0.3 双轨反编译。样本使用 Dex2C 壳：核心业务 DEX 存放在 `assets/6eb06cfa.bin`，启动时由 `libnc.so` 解密、注入 ClassLoader，并注册 native 编译方法。
+
+当前可恢复 Manifest、全部资源、外围 DEX、壳代码和原生库清单；核心 Home/Detail/Play/SourceViewModel 不在明文 DEX。下一步是复现 AES-GCM 密钥派生或在隔离环境抓取解密后的 code-cache DEX，再与 TVBoxOS 白盒源码生成差异矩阵。
+
