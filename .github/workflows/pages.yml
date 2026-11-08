@@ -23,9 +23,12 @@ jobs:
           fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
-          node-version: "24"
+          node-version: "22"
           cache: npm
-      - run: npm ci
+      # The lockfile is maintained on Windows while Pages builds on Linux.
+      # npm install refreshes platform-specific optional packages (notably
+      # Next.js/SWC) before running the reproducible checks and static build.
+      - run: npm install --include=optional --no-audit --no-fund
       - run: npm run check
       - run: npm run build
       - uses: actions/configure-pages@v5
