@@ -20,9 +20,13 @@ description: TVBox、影视仓与饭太硬复刻维护文档
 4. 点播/直播播放器能力彻底解耦。
 5. 4K/8K、60fps、硬解、HDR 和真全屏的媒体信息证据化验收。
 
-## 影视仓 6.2.8 第一轮逆向
+## 影视仓 6.2.8 逆向进展
 
 已定位并归档 TV arm64 原始 APK，完成 JADX 1.5.6 与 Apktool 3.0.3 双轨反编译。样本使用 Dex2C 壳：核心业务 DEX 存放在 `assets/6eb06cfa.bin`，启动时由 `libnc.so` 解密、注入 ClassLoader，并注册 native 编译方法。
 
-当前可恢复 Manifest、全部资源、外围 DEX、壳代码和原生库清单；核心 Home/Detail/Play/SourceViewModel 不在明文 DEX。下一步是复现 AES-GCM 密钥派生或在隔离环境抓取解密后的 code-cache DEX，再与 TVBoxOS 白盒源码生成差异矩阵。
+离线脱壳链已经跑通：不安装 Android 模拟器或后台环境，在 Windows 上执行原生解密逻辑，恢复三个真实业务 DEX，并完成 575 个 Java 文件的反编译。Home、Detail、Play、Live、Search、Drive、片源运行时及数据模型均已进入私有证据库。
+
+动态注册审计确认壳中共有 59 个 Dex2C 方法，包括 42 个影视仓业务方法和 17 个播放器设备判断方法。签名校验、请求证明和响应解密已经形成不依赖 Android 的纯 JVM 等效实现及自动自测；具体样本、密钥、函数地址和未脱敏证据仍只保存在私有知识库。
+
+当前优先恢复官方接口的请求鉴权与响应拦截语义，然后完成 TVBoxOS 差异矩阵和 PC 页面/服务映射。Android UI 与设备策略不会机械移植，而会按桌面交互保留等效功能。
 
