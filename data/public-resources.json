@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "resources": [
+    {
+      "id": "fantaiying-multiwarehouse",
+      "name": "饭太硬多仓入口",
+      "type": "warehouse",
+      "public": true,
+      "url": "https://github.catvod.com/https://raw.githubusercontent.com/tushen6/Tomorrow/master/lmw.json",
+      "expect": "config"
+    }
+  ]
+}
+

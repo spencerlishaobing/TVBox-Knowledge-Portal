@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-11-08T03:32:46.307378+00:00",
+  "results": [
+    {
+      "id": "fantaiying-multiwarehouse",
+      "name": "饭太硬多仓入口",
+      "type": "warehouse",
+      "status": "ok",
+      "httpStatus": 200,
+      "bytes": 1897,
+      "finalUrl": "https://github.catvod.com/https://raw.githubusercontent.com/tushen6/Tomorrow/master/lmw.json",
+      "latencyMs": 1086
+    }
+  ]
+}

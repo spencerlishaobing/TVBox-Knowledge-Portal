@@ -1,0 +1,12 @@
+# TVBox Spider 协议
+
+核心方法包括 `init`、`homeContent`、`homeVideoContent`、`categoryContent`、`detailContent`、`searchContent`、`playerContent` 和 `localProxy`。
+
+桌面宿主必须统一处理：
+
+- `extend` 参数与站点级配置。
+- Header、Cookie、重定向和响应编码。
+- `vod_play_from` 与 `vod_play_url` 的分组对齐。
+- `parse`、`jx`、直链和代理播放语义。
+- 异常超时、取消、日志和敏感字段屏蔽。
+
