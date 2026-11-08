@@ -1,19 +1,15 @@
 ---
-title: "架构映射"
-description: TVBox、影视仓与饭太硬复刻维护文档
+title: "Android 架构映射"
+description: Android TVBoxOS 与影视仓功能复刻
 ---
 
-# 架构映射
-
-| TVBoxOS 层 | 主要职责 | SimpleTools 对应层 |
+| 影视仓模块 | TVBoxOS 对应位置 | 移植核对重点 |
 | --- | --- | --- |
-| Activity / Fragment | 页面与焦点交互 | WebView 路由与 PC 组件 |
-| SourceViewModel | 配置、首页、详情与播放请求 | Rust 命令 + 前端状态管理 |
-| Spider / SpiderApi | 片源统一接口 | JVM/Python/JS 宿主与本地适配器 |
-| OkHttp / OkGo | 网络、Cookie、Header | Rust HTTP 与宿主网络桥 |
-| PlayerActivity | 点播控制 | libmpv 原生窗口与控制层 |
-| LivePlayActivity | 直播与线路 | 独立直播播放器状态机 |
-| Drive/Pan | 网盘目录与播放 | 云盘服务层和二维码授权 |
+| 首页、搜索与详情 Activity | 同名 Activity | 布局、焦点、入口与返回状态 |
+| 独立播放与详情预览 | DetailActivity / PlayFragment | 两种模式、生命周期、选集与进度 |
+| SourceViewModel | SourceViewModel | 请求归属、取消、错误分类和旧结果过滤 |
+| Spider 与网络层 | Spider / OkHttp / OkGo | 配置协议、请求头、解析和认证 |
+| LivePlayActivity | LivePlayActivity | 频道、EPG、切源、返回与超时 |
+| Drive 与网盘下载 | 待核对等价实现 | 数据模型、登录、目录和下载入口 |
 
-复刻重点是保持协议语义和用户任务，不复制 Android 生命周期、遥控器焦点和窗口实现。
-
+影视仓既有独立播放页，也有内嵌预览，不能只按页面类名复制。TVBoxOS 已有 Surface 重建后恢复播放的保护，应在移植时保留。原版行为与必要改进分别记录。
