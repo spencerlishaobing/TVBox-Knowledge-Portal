@@ -15,3 +15,9 @@
 4. 点播/直播播放器能力彻底解耦。
 5. 4K/8K、60fps、硬解、HDR 和真全屏的媒体信息证据化验收。
 
+## 影视仓 6.2.8 第一轮逆向
+
+已定位并归档 TV arm64 原始 APK，完成 JADX 1.5.6 与 Apktool 3.0.3 双轨反编译。样本使用 Dex2C 壳：核心业务 DEX 存放在 `assets/6eb06cfa.bin`，启动时由 `libnc.so` 解密、注入 ClassLoader，并注册 native 编译方法。
+
+当前可恢复 Manifest、全部资源、外围 DEX、壳代码和原生库清单；核心 Home/Detail/Play/SourceViewModel 不在明文 DEX。下一步是复现 AES-GCM 密钥派生或在隔离环境抓取解密后的 code-cache DEX，再与 TVBoxOS 白盒源码生成差异矩阵。
+
